@@ -8,10 +8,6 @@ import android.widget.ListView;
 
 import com.zanexes.technotrack_android_01.adapter.ListViewAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 public class SecondActivity extends Activity {
     private AsyncTask asyncTask;
 
@@ -19,28 +15,11 @@ public class SecondActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
-
-        asyncTask = new DataAsyncTask().execute();
-        try {
-            initListView(getApplicationContext());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        initListView(getApplicationContext());
     }
 
-    private void initListView(Context context) throws ExecutionException, InterruptedException {
+    private void initListView(Context context) {
         ListView lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(new ListViewAdapter(context, (List<String>) asyncTask.get()));
-    }
-
-    private List<String> getMock() {
-        //TODO AsyncTask
-        List<String> data = new ArrayList<>();
-        for (int i = 1; i < 1000; i++) {
-            data.add(i+"");
-        }
-        return data;
+        lv.setAdapter(new ListViewAdapter(context));
     }
 }

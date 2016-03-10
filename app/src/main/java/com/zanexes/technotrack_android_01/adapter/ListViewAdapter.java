@@ -8,18 +8,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.zanexes.technotrack_android_01.NumericParser;
 import com.zanexes.technotrack_android_01.R;
 
-import java.util.List;
-
 public class ListViewAdapter extends BaseAdapter {
-
     Context context;
-    List<String> data;
+    private static final int COUNT = 1000000 - 1;
 
-    public ListViewAdapter(Context context, List<String> data) {
+    public ListViewAdapter(Context context) {
         this.context = context;
-        this.data = data;
     }
 
     @Override
@@ -29,12 +26,12 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.size();
+        return COUNT;
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        return NumericParser.digits2text(position + 1);
     }
 
     @Override
