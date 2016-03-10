@@ -3,12 +3,11 @@ import java.util.Stack;
 
 // Источник - https://mtaalamu.ru/blog/coding/2284.html
 // Достаточно сильно поправлен.
+// Удалены копейки
 // Исправлены ошибки десятки
 // Исзменены названия
 
 public class NumericParser {
-
-    //TODO FIX DECADES
 
     private static enum Ranges {
         UNITS, DECADES, HUNDREDS, THOUSANDS, MILLIONS, BILLIONS
