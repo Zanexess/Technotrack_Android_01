@@ -1,8 +1,10 @@
 package com.zanexes.technotrack_android_01;
-
 import java.util.Stack;
 
 // Источник - https://mtaalamu.ru/blog/coding/2284.html
+// Достаточно сильно поправлен.
+// Исправлены ошибки десятки
+// Исзменены названия
 
 public class NumericParser {
 
@@ -106,8 +108,8 @@ public class NumericParser {
         return result.toString().replaceAll("null", "");
     }
 
-    private static String getHundreds(char dig) {
-        switch (dig) {
+    private static String getHundreds(char digit) {
+        switch (digit) {
             case '1':
                 return "сто";
             case '2':
@@ -131,8 +133,8 @@ public class NumericParser {
         }
     }
 
-    private static String getDecades(char dig) {
-        switch (dig) {
+    private static String getDecades(char digit) {
+        switch (digit) {
             case '1':
                 return "десять";
             case '2':
