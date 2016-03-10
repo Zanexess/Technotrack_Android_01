@@ -18,16 +18,40 @@ public class FirstActivity extends Activity {
     }
 
     private void introActivity() {
-        handler = new Handler();
-
-        introActivity = new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
-                startActivity(intent);
-                finish();
+//        handler = new Handler();
+//
+//        introActivity = new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        };
+//
+//        handler.postDelayed(introActivity, 2000);
+        Thread timer = new Thread()
+        {
+            public void run()
+            {
+                try
+                {
+                    int logoTimer = 0;
+                    while(logoTimer < 2000) {
+                        sleep(100);
+                        logoTimer = logoTimer +100;
+                    };
+                    Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                    startActivity(intent);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    finish();
+                }
             }
         };
-        handler.postDelayed(introActivity, 2000);
+        timer.start();
     }
 }

@@ -43,8 +43,7 @@ public class ListViewAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-            holder = new ViewHolder();
-            holder.textView = (TextView)convertView.findViewById(R.id.item_textView);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
@@ -60,5 +59,8 @@ public class ListViewAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         TextView textView;
+        public ViewHolder(View view) {
+            this.textView = (TextView) view.findViewById(R.id.item_textView);
+        }
     }
 }
