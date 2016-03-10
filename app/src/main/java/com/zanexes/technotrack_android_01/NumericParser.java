@@ -6,10 +6,8 @@ import java.util.Stack;
 
 public class NumericParser {
 
-    //TODO FIX DECADES
-
     private static enum Ranges {
-        UNITS, DECADES, HUNDREDS, THOUSANDS, MILLIONS, BILLIONS
+        UNITS, DECADES, HUNDREDS, THOUSANDS, MILLIONS
     };
 
     private static Stack<ThreeChar> threeChars;
@@ -46,8 +44,6 @@ public class NumericParser {
                     threeChar.range = Ranges.MILLIONS;
                     threeChar.u = sb.charAt(i);
                     break;
-                case 2:
-                case 5:
                 case 8:
                     threeChar.h = sb.charAt(i);
                     break;
@@ -67,7 +63,7 @@ public class NumericParser {
                 if (thch.d > '1' || (thch.d == '1' && thch.u == '0')) {
                     result.append(getDecades(thch.d));
                 } else if (thch.d > '0') {
-                    result.append(getTeens(thch.d));
+                    result.append(getTeens(thch.u));
                 }
                 result.append(' ');
             }
