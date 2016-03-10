@@ -119,11 +119,11 @@ public class NumericParser {
             case '5':
                 return "пятьсот";
             case '6':
-                return "шестсот";
+                return "шестьсот";
             case '7':
-                return "семсот";
+                return "семьсот";
             case '8':
-                return "восемсот";
+                return "восемьсот";
             case '9':
                 return "девятьсот";
             default:
