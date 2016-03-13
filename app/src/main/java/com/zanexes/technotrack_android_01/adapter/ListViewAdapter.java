@@ -31,7 +31,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return NumericParser.digits2text(position + 1);
+        return NumericParser.digits2text(position + 1, context);
     }
 
     @Override

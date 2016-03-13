@@ -1,13 +1,17 @@
 package com.zanexes.technotrack_android_01;
+import android.content.Context;
+
 import java.util.Stack;
 
 // Источник - https://mtaalamu.ru/blog/coding/2284.html
-// Достаточно сильно поправлен.
-// Удалены копейки
-// Исправлены ошибки десятки
-// Исзменены названия
+// Достаточно сильно поправлен блок логики.
+// Удалены всяческие упоминание о валютах.
+// Исправлены ошибки связанные с десятками
+// Изменены названия
 
 public class NumericParser {
+
+    private  Context context;
 
     private static enum Ranges {
         UNITS, DECADES, HUNDREDS, THOUSANDS, MILLIONS, BILLIONS
@@ -20,7 +24,7 @@ public class NumericParser {
         Ranges range;
     }
 
-    public static String digits2text(Integer d) {
+    public static String digits2text(Integer d, Context context) {
         String s = d.toString();
         if (d < 0 || d > 1000000) {
             return null;
@@ -61,42 +65,42 @@ public class NumericParser {
             ThreeChar thch = threeChars.pop();
             if(thch.h == '0' && thch.d == '0' && thch.u == '0' && !threeChars.isEmpty()) continue;
             if (thch.h > 0) {
-                result.append(getHundreds(thch.h));
+                result.append(getHundreds(thch.h, context));
                 result.append(' ');
             }
             if (thch.d > '0') {
                 if (thch.d > '1' || (thch.d == '1' && thch.u == '0')) {
-                    result.append(getDecades(thch.d));
+                    result.append(getDecades(thch.d, context));
                 } else if (thch.d > '0') {
-                    result.append(getTeens(thch.u));
+                    result.append(getTeens(thch.u, context));
                 }
                 result.append(' ');
             }
             if (thch.u > '0' && thch.d != '1') {
-                result.append(getUnits(thch.u, thch.range == Ranges.THOUSANDS));
+                result.append(getUnits(thch.u, thch.range == Ranges.THOUSANDS, context));
                 result.append(' ');
             }
             switch (thch.range) {
                 case MILLIONS:
                     if (thch.d == '1' || thch.u == '0') {
-                        result.append("миллионов");
+                        result.append(context.getResources().getString(R.string.million1));
                     } else if (thch.u > '4') {
-                        result.append("миллионов");
+                        result.append(context.getResources().getString(R.string.million1));
                     } else if (thch.u > '1') {
-                        result.append("миллиона");
+                        result.append(context.getResources().getString(R.string.million2));
                     } else {
-                        result.append("миллион");
+                        result.append(context.getResources().getString(R.string.million3));
                     }
                     break;
                 case THOUSANDS:
                     if (thch.d == '1' || thch.u == '0') {
-                        result.append("тысяч");
+                        result.append(context.getResources().getString(R.string.thousand1));
                     } else if (thch.u > '4') {
-                        result.append("тысяч");
+                        result.append(context.getResources().getString(R.string.thousand1));
                     } else if (thch.u > '1') {
-                        result.append("тысячи");
+                        result.append(context.getResources().getString(R.string.thousand2));
                     } else {
-                        result.append("тысяча");
+                        result.append(context.getResources().getString(R.string.thousand3));
                     }
                     break;
             }
@@ -107,112 +111,112 @@ public class NumericParser {
         return result.toString().replaceAll("null", "");
     }
 
-    private static String getHundreds(char digit) {
+    private static String getHundreds(char digit, Context context) {
         switch (digit) {
             case '1':
-                return "сто";
+                return context.getResources().getString(R.string.hundred1);
             case '2':
-                return "двести";
+                return context.getResources().getString(R.string.hundred2);
             case '3':
-                return "триста";
+                return context.getResources().getString(R.string.hundred3);
             case '4':
-                return "четыреста";
+                return context.getResources().getString(R.string.hundred4);
             case '5':
-                return "пятьсот";
+                return context.getResources().getString(R.string.hundred5);
             case '6':
-                return "шестьсот";
+                return context.getResources().getString(R.string.hundred6);
             case '7':
-                return "семьсот";
+                return context.getResources().getString(R.string.hundred7);
             case '8':
-                return "восемьсот";
+                return context.getResources().getString(R.string.hundred8);
             case '9':
-                return "девятьсот";
+                return context.getResources().getString(R.string.hundred9);
             default:
                 return null;
         }
     }
 
-    private static String getDecades(char digit) {
+    private static String getDecades(char digit, Context context) {
         switch (digit) {
             case '1':
-                return "десять";
+                return context.getResources().getString(R.string.decades1);
             case '2':
-                return "двадцать";
+                return context.getResources().getString(R.string.decades2);
             case '3':
-                return "тридцать";
+                return context.getResources().getString(R.string.decades3);
             case '4':
-                return "сорок";
+                return context.getResources().getString(R.string.decades4);
             case '5':
-                return "пятьдесят";
+                return context.getResources().getString(R.string.decades5);
             case '6':
-                return "шестьдесят";
+                return context.getResources().getString(R.string.decades6);
             case '7':
-                return "семьдесят";
+                return context.getResources().getString(R.string.decades7);
             case '8':
-                return "восемьдесят";
+                return context.getResources().getString(R.string.decades8);
             case '9':
-                return "девяносто";
+                return context.getResources().getString(R.string.decades9);
             default:
                 return null;
         }
     }
 
-    private static String getUnits(char dig, boolean female) {
+    private static String getUnits(char dig, boolean female, Context context) {
         switch (dig) {
             case '1':
-                return female ? "одна" : "один";
+                return female ? context.getResources().getString(R.string.units1_1) : context.getResources().getString(R.string.units1_2);
             case '2':
-                return female ? "две" : "два";
+                return female ? context.getResources().getString(R.string.units2_1) : context.getResources().getString(R.string.units2_2);
             case '3':
-                return "три";
+                return context.getResources().getString(R.string.units3);
             case '4':
-                return "четыре";
+                return context.getResources().getString(R.string.units4);
             case '5':
-                return "пять";
+                return context.getResources().getString(R.string.units5);
             case '6':
-                return "шесть";
+                return context.getResources().getString(R.string.units6);
             case '7':
-                return "семь";
+                return context.getResources().getString(R.string.units7);
             case '8':
-                return "восемь";
+                return context.getResources().getString(R.string.units8);
             case '9':
-                return "девять";
+                return context.getResources().getString(R.string.units9);
             default:
                 return null;
         }
     }
 
-    private static String getTeens(char digit) {
+    private static String getTeens(char digit, Context context) {
         String s = "";
         switch (digit) {
             case '1':
-                s = "один";
+                s = context.getResources().getString(R.string.teens1);
                 break;
             case '2':
-                s = "две";
+                s = context.getResources().getString(R.string.teens2);
                 break;
             case '3':
-                s = "три";
+                s = context.getResources().getString(R.string.teens3);
                 break;
             case '4':
-                s = "четыр";
+                s = context.getResources().getString(R.string.teens4);
                 break;
             case '5':
-                s = "пят";
+                s = context.getResources().getString(R.string.teens5);
                 break;
             case '6':
-                s = "шест";
+                s = context.getResources().getString(R.string.teens6);
                 break;
             case '7':
-                s = "сем";
+                s = context.getResources().getString(R.string.teens7);
                 break;
             case '8':
-                s = "восем";
+                s = context.getResources().getString(R.string.teens8);
                 break;
             case '9':
-                s = "девят";
+                s = context.getResources().getString(R.string.teens9);
                 break;
         }
-        return s + "надцать";
+        return s + context.getResources().getString(R.string.teens0);
     }
 }

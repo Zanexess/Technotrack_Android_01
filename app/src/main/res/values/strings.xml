@@ -1,3 +1,55 @@
 <resources>
     <string name="app_name">Technotrack_Android_01</string>
+    
+    <string name="million1">миллионов</string>
+    <string name="million2">миллиона</string>
+    <string name="million3">миллион</string>
+
+    <string name="thousand1">тысяч</string>
+    <string name="thousand2">тысячи</string>
+    <string name="thousand3">тысяча</string>
+
+    <string name="hundred1">сто</string>
+    <string name="hundred2">двести</string>
+    <string name="hundred3">триста</string>
+    <string name="hundred4">четыреста</string>
+    <string name="hundred5">пятьсот</string>
+    <string name="hundred6">шестьсот</string>
+    <string name="hundred7">семьсот</string>
+    <string name="hundred8">восемьсот</string>
+    <string name="hundred9">девятьсот</string>
+
+    <string name="decades1">десять</string>
+    <string name="decades2">двадцать</string>
+    <string name="decades3">тридцать</string>
+    <string name="decades4">сорок</string>
+    <string name="decades5">пятьдесят</string>
+    <string name="decades6">шестьдесят</string>
+    <string name="decades7">семьдесят</string>
+    <string name="decades8">восемьдесят</string>
+    <string name="decades9">девяносто</string>
+
+    <string name="units1_1">одна</string>
+    <string name="units1_2">один</string>
+    <string name="units2_1">две</string>
+    <string name="units2_2">два</string>
+    <string name="units3">три</string>
+    <string name="units4">четыре</string>
+    <string name="units5">пять</string>
+    <string name="units6">шесть</string>
+    <string name="units7">семь</string>
+    <string name="units8">восемь</string>
+    <string name="units9">девять</string>
+
+    <string name="teens1">один</string>
+    <string name="teens2">две</string>
+    <string name="teens3">три</string>
+    <string name="teens4">четыр</string>
+    <string name="teens5">пят</string>
+    <string name="teens6">шест</string>
+    <string name="teens7">сем</string>
+    <string name="teens8">восем</string>
+    <string name="teens9">девят</string>
+    <string name="teens0">надцать</string>
+
 </resources>
